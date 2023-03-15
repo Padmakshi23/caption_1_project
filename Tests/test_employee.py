@@ -18,22 +18,22 @@ class JavascriptExecutor:
 
 class TestAddEmployee(WebDriverWrapper):
 
-    # @pytest.mark.parametrize('usereamil,password,upload_number,expected_error',
-    #                          data_source.test_invalid_profile_upload_data)
-    # def test_invalid_profile_upload(self, usereamil, password, upload_number, expected_error):
-    #     self.driver.find_element(By.ID, "user_email").send_keys(usereamil)
-    #     self.driver.find_element(By.ID, "user_password").send_keys(password)
-    #     self.driver.find_element(By.XPATH, "(//button[normalize-space()='Sign In'])").click()
-    #     self.driver.find_element(By.XPATH, "//span[normalize-space()='Directory']").click()
-    #     self.driver.find_element(By.XPATH,"//a[normalize-space()='employees']").click()
-    #     self.driver.execute_script("window.scrollTo(0,1350)")
-    #     time.sleep(3)
-    #     self.driver.find_element(By.XPATH, "(//span[contains(text(),'Edit')])[1]").click()
-    #     self.driver.find_element(By.XPATH, "//button[normalize-space()='Contact']").click()
-    #     self.driver.find_element(By.ID, "phone").send_keys(upload_number)
-    #     self.driver.find_element(By.XPATH, "//span[normalize-space()='Save']").click()
-    #     actual_error = self.driver.find_element(By.XPATH, "//span[@role='alert']").text
-    #     assert_that(actual_error).contains(expected_error)
+    @pytest.mark.parametrize('usereamil,password,upload_number,expected_error',
+                             data_source.test_invalid_profile_upload_data)
+    def test_invalid_profile_upload(self, usereamil, password, upload_number, expected_error):
+        self.driver.find_element(By.ID, "user_email").send_keys(usereamil)
+        self.driver.find_element(By.ID, "user_password").send_keys(password)
+        self.driver.find_element(By.XPATH, "(//button[normalize-space()='Sign In'])").click()
+        self.driver.find_element(By.XPATH, "//span[normalize-space()='Directory']").click()
+        self.driver.find_element(By.XPATH,"//a[normalize-space()='employees']").click()
+        self.driver.execute_script("window.scrollTo(0,1350)")
+        time.sleep(3)
+        self.driver.find_element(By.XPATH, "(//span[contains(text(),'Edit')])[1]").click()
+        self.driver.find_element(By.XPATH, "//button[normalize-space()='Contact']").click()
+        self.driver.find_element(By.ID, "phone").send_keys(upload_number)
+        self.driver.find_element(By.XPATH, "//span[normalize-space()='Save']").click()
+        actual_error = self.driver.find_element(By.XPATH, "//span[@role='alert']").text
+        assert_that(actual_error).contains(expected_error)
 
     @pytest.mark.parametrize(
         "usereamil, password,fullname,email, jobtitle", data_source.test_add_valid_employee_data)
